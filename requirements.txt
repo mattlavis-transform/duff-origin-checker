@@ -1,0 +1,6 @@
+autopep8==1.5.7
+lxml==4.6.3
+psycopg2==2.8.6
+pycodestyle==2.7.0
+python-dotenv==0.17.1
+toml==0.10.2
