@@ -21,10 +21,11 @@ for item in rows:
 
 # Get the search references
 folder = os.getcwd()
-folder = os.path.join(folder, "source")
-refs_file = os.path.join(folder, "search_references_202105251318.csv")
-
-# 16,account books,"4820",Heading
+source_folder = os.path.join(folder, "source")
+dest_folder = os.path.join(folder, "dest")
+refs_file = os.path.join(source_folder, "search_references_202105251318.csv")
+sql_file = os.path.join(dest_folder, "sql.txt")
+errors_file = os.path.join(dest_folder, "heading_errors.csv")
 
 search_references = []
 search_errors = []
@@ -49,7 +50,7 @@ with open(refs_file) as csv_file:
         
     for search_reference in search_references:
         if not(search_reference.found):
-            search_errors.append(search_reference) # .__dict__)
+            search_errors.append(search_reference)
             print (search_reference.key)
             
 search_errors = sorted(search_errors, key=lambda x: x.key, reverse=False)
@@ -62,12 +63,12 @@ for item in search_errors:
         uniques.append(item.key)
         sql += "DELETE from search_references where referenced_id = '{}';\n".format(item.key)
     
-f = open("sql.txt", "w")
+f = open(sql_file, "w")
 f.write(sql)
 f.close()
 
 
-with open('heading_errors.csv', 'w') as f:
+with open(errors_file, 'w') as f:
     write = csv.writer(f)
     for row in search_errors:
         # write.writerow([row.id, row.term, row.key, row.type])

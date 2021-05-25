@@ -107,6 +107,7 @@ log/
 import/
 xml_in/
 xml_out/
+dest/
 __pycache__/
 csv/
 temp/
