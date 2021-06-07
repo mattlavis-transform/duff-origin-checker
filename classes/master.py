@@ -12,9 +12,12 @@ class Master(object):
         except:
             self.national = 0
 
-        self.transaction_date = elem.find("metainfo/transactionDate").text
-        parts = elem.find("metainfo/transactionDate").text.split("T")
-        self.transaction_date = parts[0]
+        try:
+            self.transaction_date = elem.find("metainfo/transactionDate").text
+            parts = elem.find("metainfo/transactionDate").text.split("T")
+            self.transaction_date = parts[0]
+        except:
+            self.transaction_date = "n/a"
 
     @staticmethod
     def process_null(elem):

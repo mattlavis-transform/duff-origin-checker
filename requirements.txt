@@ -4,3 +4,4 @@ psycopg2==2.8.6
 pycodestyle==2.7.0
 python-dotenv==0.17.1
 toml==0.10.2
+XlsxWriter==1.4.3
